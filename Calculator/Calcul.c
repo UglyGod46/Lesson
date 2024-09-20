@@ -26,27 +26,22 @@ void Division(int a, int b)
 
 int main()
 {
-    int Choice;
+    int choice;
     int num1, num2;
 
     while(1)
     {
         printf("\nSelect an operation:\n1)Addition(+)\n2)Subtraction(-)\n3)Multiplication(*)\n4)Division(/)\n5)Exit\n");
-        scanf("%d", &Choice);
-        if (Choice == 5)
+        scanf("%d", &choice);
+        if (choice == 5)
         {
-            break;
-        }
-        if (Choice > 5)
-        {
-            printf("Wrong choice");
             break;
         }
         printf("Select first number: ");
         scanf("%d", &num1);
         printf("Select second number: ");
         scanf("%d", &num2);
-        switch (Choice)
+        switch (choice)
         {
         case 1:
             Addition(num1, num2);
@@ -61,6 +56,7 @@ int main()
             Division(num1, num2);
             break;
         default:
+            printf("Wrong choice");
             break;
         }
     }
