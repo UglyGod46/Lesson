@@ -24,12 +24,17 @@ void Division(int a, int b)
     printf("Result: %lf", div);
 }
 
-void main()
+int main()
 {
     int Choice;
     int num1, num2;
     printf("Select an operation:\n1)Addition(+)\n2)Subtraction(-)\n3)Multiplication(*)\n4)Division(/)\n");
     scanf("%d", &Choice);
+    if (Choice > 4)
+    {
+        printf("Wrong choice");
+        return 0;
+    }
     printf("Select first number: ");
     scanf("%d", &num1);
     printf("Select second number: ");
@@ -49,11 +54,6 @@ void main()
     case 4:
         Division(num1, num2);
         break;
-    if (Choice > 4)
-    {
-        printf("Wrong choice");
-        break;
-    }
     default:
         break;
     }
