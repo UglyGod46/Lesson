@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include "Operations.h"
+#include "Operations.c"
 
 int main()
 {
     int choice;
-
+   
     while (1) {
         printf("\nContact list:\n");
         printf("1. Add contact\n");
@@ -30,7 +30,7 @@ int main()
                 ListContacts();
                 break;
             case 5:
-                exit(0);
+                return 0;
             default:
                 printf("Wrong choice. Try again.\n");
         }
