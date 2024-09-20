@@ -28,34 +28,40 @@ int main()
 {
     int Choice;
     int num1, num2;
-    printf("Select an operation:\n1)Addition(+)\n2)Subtraction(-)\n3)Multiplication(*)\n4)Division(/)\n");
-    scanf("%d", &Choice);
-    if (Choice > 4)
-    {
-        printf("Wrong choice");
-        return 0;
-    }
-    printf("Select first number: ");
-    scanf("%d", &num1);
-    printf("Select second number: ");
-    scanf("%d", &num2);
 
-    switch (Choice)
+    while(1)
     {
-    case 1:
-        Addition(num1, num2);
-        break;
-    case 2:
-        Subtraction(num1, num2);
-        break;
-    case 3:
-        Multiplication(num1, num2);
-        break;
-    case 4:
-        Division(num1, num2);
-        break;
-    default:
-        break;
+        printf("\nSelect an operation:\n1)Addition(+)\n2)Subtraction(-)\n3)Multiplication(*)\n4)Division(/)\n5)Exit\n");
+        scanf("%d", &Choice);
+        if (Choice == 5)
+        {
+            break;
+        }
+        if (Choice > 5)
+        {
+            printf("Wrong choice");
+            break;
+        }
+        printf("Select first number: ");
+        scanf("%d", &num1);
+        printf("Select second number: ");
+        scanf("%d", &num2);
+        switch (Choice)
+        {
+        case 1:
+            Addition(num1, num2);
+            break;
+        case 2:
+            Subtraction(num1, num2);
+            break;
+        case 3:
+            Multiplication(num1, num2);
+            break;
+        case 4:
+            Division(num1, num2);
+            break;
+        default:
+            break;
+        }
     }
-
 }
