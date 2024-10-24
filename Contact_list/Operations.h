@@ -15,3 +15,11 @@ typedef struct
 
 Contact contacts[MAX_MASSIVE_LENGTH];
 int contactCount = 0;
+
+void AddContact();
+
+void DeleteContact();
+
+void EditContact();
+
+void ListContacts();
