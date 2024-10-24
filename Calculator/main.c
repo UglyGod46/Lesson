@@ -1,58 +1,57 @@
 #include "Operations.h"
 
-int main() 
-{
-    int choice, num_args;
-    double result;
 
-    while (1) 
-    {
-        printf("Выберите операцию:\n");
-        printf("1) Сложение\n");
-        printf("2) Вычитание\n");
-        printf("3) Умножение\n");
-        printf("4) Деление\n");
-        printf("5) Выход\n");
+int main() {
+    int current_size = 0;
+    Command new_command;
+
+    Create_command("Сложение", Addition, &new_command);
+    current_size = Add_to_massive(new_command, commands, current_size);
+    Create_command("Вычитание", Subtraction, &new_command);
+    current_size = Add_to_massive(new_command, commands, current_size);
+    Create_command("Умножение", Multiplication, &new_command);
+    current_size = Add_to_massive(new_command, commands, current_size);
+    Create_command("Деление", Division, &new_command);
+    current_size = Add_to_massive(new_command, commands, current_size);
+
+    int choice;
+    while (1) {
+        printf("\nВыберите операцию:\n");
+        for (int i = 0; i < current_size; i++) {
+            printf("%d. %s\n", i + 1, commands[i].name);
+        }
+        printf("0. Выход\n");
         printf("Ваш выбор: ");
         scanf("%d", &choice);
 
-        if (choice == 5) {
-            break; 
+        if (choice == 0) {
+            break;
+        }
 
-        printf("Введите количество чисел для операции: ");
+        if (choice < 1 || choice > current_size) {
+            printf("Неверный выбор, попробуйте снова.\n");
+            continue;
+        }
+
+        int num_args;
+        printf("Введите количество аргументов: ");
         scanf("%d", &num_args);
 
-        double numbers[num_args];
-        printf("Введите %d чисел:\n", num_args);
-        for (int i = 0; i < num_args; i++) 
-        {
-            scanf("%lf", &numbers[i]);
+        if (num_args <= 0) {
+            printf("Количество аргументов должно быть больше нуля.\n");
+            continue;
         }
 
-        switch (choice) 
-        {
-            case 1:
-                result = Addition(num_args, numbers[0], numbers[1], numbers[2], numbers[3], numbers[4]); 
-                printf("Результат сложения: %.2f\n", result);
-                break;
-            case 2:
-                result = Subtraction(num_args, numbers[0], numbers[1], numbers[2], numbers[3], numbers[4]);
-                printf("Результат вычитания: %.2f\n", result);
-                break;
-            case 3:
-                result = Multiplication(num_args, numbers[0], numbers[1], numbers[2], numbers[3], numbers[4]);
-                printf("Результат умножения: %.2f\n", result);
-                break;
-            case 4:
-                result = Division(num_args, numbers[0], numbers[1], numbers[2], numbers[3], numbers[4]);
-                printf("Результат деления: %.2f\n", result);
-                break;
-            default:
-                printf("Неверный выбор. Попробуйте снова.\n");
-                break;
+        double *args = malloc(num_args * sizeof(double));
+        printf("Введите аргументы:\n");
+        for (int i = 0; i < num_args; i++) {
+            scanf("%lf", &args[i]);
         }
+
+        double result = commands[choice - 1].func(num_args, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9]); 
+        printf("Результат: %lf\n", result);
+        free(args);
     }
 
     return 0;
-    }
 }
