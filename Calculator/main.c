@@ -1,90 +1,58 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdarg.h>
+#include "Operations.h"
 
-typedef double (*Operation)(int count_arg, ...);
-
-double Addition(int count_arg, ...)
+int main() 
 {
-    va_list factor;
-    va_start(factor, count_arg);
-    int result = 0;
-    for(int i = 0; i < count_arg; i++)
+    int choice, num_args;
+    double result;
+
+    while (1) 
     {
-        result += va_arg(factor, int);
-    }
-    va_end(factor);
-    return result;
-}
+        printf("Выберите операцию:\n");
+        printf("1) Сложение\n");
+        printf("2) Вычитание\n");
+        printf("3) Умножение\n");
+        printf("4) Деление\n");
+        printf("5) Выход\n");
+        printf("Ваш выбор: ");
+        scanf("%d", &choice);
 
-double Subtraction(int count_args, ...)
-{
-    va_list factor;
-    va_start(factor, count_args);
-    int result = va_arg(factor, int);
-    for(int i = 0; i < count_args; i++)
-    {
-        result -= va_arg(factor, int);
-    }
-    va_end(factor);
-    return result;
-}
+        if (choice == 5) {
+            break; 
 
-double Multiplication(int count_args, ...)
-{
-    va_list factor;
-    va_start(factor, count_args);
-    int result = 1;
-    for(int i = 0; i < count_args; i++)
-    {
-        result *= va_arg(factor, int);
-    }
-    va_end(factor);
-    return result;
-}
+        printf("Введите количество чисел для операции: ");
+        scanf("%d", &num_args);
 
-double Division(int count_args, ...)
-{
-    va_list factor;
-    va_start(factor, count_args);
-    int result = va_arg(factor, int);
-    for(int i = 0; i < count_args; i++)
-    {
-        result /= va_arg(factor, int);
-    }
-    va_end(factor);
-    return result;
-}
-
-typedef struct{
-    char *name;
-    Operation func;
-} Command;
-
-Command *commands = NULL;
-int command_count = 0;
-
-void Add_command(char *name, Operation func)
-{
-    commands = realloc(commands, sizeof(Command) * (command_count + 1));
-    commands[command_count].name = strdup(name);
-    commands[command_count].func = strdup(func);
-    command_count ++; 
-}
-
-Operation Find_command(char *name)
-{
-    for(int i = 0; i < command_count; i++)
-    {
-        if (strcmp(commands[i].name, name) == 0)
+        double numbers[num_args];
+        printf("Введите %d чисел:\n", num_args);
+        for (int i = 0; i < num_args; i++) 
         {
-            return commands[i].func;
+            scanf("%lf", &numbers[i]);
+        }
+
+        switch (choice) 
+        {
+            case 1:
+                result = Addition(num_args, numbers[0], numbers[1], numbers[2], numbers[3], numbers[4]); 
+                printf("Результат сложения: %.2f\n", result);
+                break;
+            case 2:
+                result = Subtraction(num_args, numbers[0], numbers[1], numbers[2], numbers[3], numbers[4]);
+                printf("Результат вычитания: %.2f\n", result);
+                break;
+            case 3:
+                result = Multiplication(num_args, numbers[0], numbers[1], numbers[2], numbers[3], numbers[4]);
+                printf("Результат умножения: %.2f\n", result);
+                break;
+            case 4:
+                result = Division(num_args, numbers[0], numbers[1], numbers[2], numbers[3], numbers[4]);
+                printf("Результат деления: %.2f\n", result);
+                break;
+            default:
+                printf("Неверный выбор. Попробуйте снова.\n");
+                break;
         }
     }
-    return 0;
-}
 
-int main()
-{
-    printf("");
+    return 0;
+    }
 }
