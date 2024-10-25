@@ -1,8 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "Operations.h"
 
+Contact contacts[MAX_MASSIVE_LENGTH];
+
+int contactCount = 0;
 
 void AddContact()
 {

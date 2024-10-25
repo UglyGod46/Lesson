@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #define MAX_MASSIVE_LENGTH 100
 #define POSITION_LENGTH 50
 #define PHONE_LENGTH 15
@@ -13,8 +17,9 @@ typedef struct
     char social[MAX_MASSIVE_LENGTH];
 } Contact;
 
-Contact contacts[MAX_MASSIVE_LENGTH];
-int contactCount = 0;
+extern Contact contacts[MAX_MASSIVE_LENGTH];
+
+extern int contactCount;
 
 void AddContact();
 

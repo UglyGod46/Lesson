@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include "Operations.c"
+#include "Operations.h"
 
 int main()
 {
