@@ -17,7 +17,8 @@ int main()
         switch (choice) 
         {
             case 1:
-                AddContact();
+                Contact newContact;
+                AddContact(newContact);
                 break;
             case 2:
                 EditContact();
